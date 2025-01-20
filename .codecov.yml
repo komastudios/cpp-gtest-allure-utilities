@@ -1,4 +1,0 @@
-ignore:
-    - "cmake/.*"
-    - "build/.*"
-    - "test/.*"
