@@ -1,0 +1,67 @@
+# Summary of changes
+
+## Changes for version 1.0.8 (7 Sep 2021)
+
+### Bug Fixes
+
+- Deploy conan package into remote specific for C++ task force
+- Fixed use of "export_sources" definition in conan recipe
+
+
+## Changes for version 1.0.7 (14 Jun 2021)
+
+### Bug Fixes
+
+- Added pipelines to support continuous integration on Jenkins
+
+
+## Changes for version 1.0.6 (30 Mar 2021)
+
+### Bug Fixes
+
+- Updated deploy of Conan package to CSW JFrogPlatform
+
+
+## Changes for version 1.0.5 (23 Feb 2021)
+
+### Bug Fixes
+
+- Updated continuous integration to:
+  - Use GitHub Action to generate library documentation.
+  - Upload generated packages to Systelab's public Artifactory.
+
+
+## Changes for version 1.0.4 (9 Dec 2019)
+
+### Bug Fixes
+
+- Prepared Conan recipe to build from sources
+
+
+## Changes for version 1.0.3 (19 Oct 2019)
+
+### Bug Fixes
+
+- Handle generated Conan package as header only
+
+
+## Changes for version 1.0.2 (10 Oct 2019)
+
+### Bug Fixes
+
+- Ported bug fixes from the SVN repository
+
+
+## Changes for version 1.0.1 (9 Apr 2019)
+
+### Bug Fixes
+
+- Removed unnecessary settings from conan package
+
+
+## Changes for version 1.0.0 (3 Apr 2019)
+
+### Enhancements
+
+- Initial version on GitHub (ported from internal SVN server)
+
