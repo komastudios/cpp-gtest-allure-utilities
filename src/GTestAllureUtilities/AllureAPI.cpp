@@ -55,6 +55,11 @@ namespace systelab { namespace gtest_allure {
 		setTestSuiteLabel(model::test_property::NAME_PROPERTY, name);
 	}
 
+	void AllureAPI::setTestSuiteFullName(const std::string& name)
+	{
+		setTestSuiteLabel(model::test_property::FULL_NAME_PROPERTY, name);
+	}
+
 	void AllureAPI::setTestSuiteDescription(const std::string& description)
 	{
 		setTestSuiteLabel(model::test_property::FEATURE_PROPERTY, description);

@@ -28,6 +28,10 @@ namespace systelab { namespace gtest_allure { namespace service {
 		{
 			testSuite.setName(value);
 		}
+		else if (name == model::test_property::FULL_NAME_PROPERTY)
+		{
+			testSuite.setFullName(value);
+		}
 		else
 		{
 			model::Label label;

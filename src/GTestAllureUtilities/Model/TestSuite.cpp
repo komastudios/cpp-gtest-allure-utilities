@@ -6,6 +6,7 @@ namespace systelab { namespace gtest_allure { namespace model {
 	TestSuite::TestSuite()
 		:m_uuid()
 		,m_name()
+		,m_fullName()
 		,m_tmsId("")
 		,m_status(Status::UNKNOWN)
 		,m_stage(Stage::PENDING)
@@ -21,6 +22,7 @@ namespace systelab { namespace gtest_allure { namespace model {
 	TestSuite::TestSuite(const TestSuite& other)
 		:m_uuid(other.m_uuid)
 		,m_name(other.m_name)
+		,m_fullName(other.m_fullName)
 		,m_tmsId(other.m_tmsId)
 		,m_status(other.m_status)
 		,m_stage(other.m_stage)
@@ -41,6 +43,11 @@ namespace systelab { namespace gtest_allure { namespace model {
 	std::string TestSuite::getName() const
 	{
 		return m_name;
+	}
+
+	std::string TestSuite::getFullName() const
+	{
+		return m_fullName;
 	}
 
 	std::string TestSuite::getTmsId() const
@@ -81,6 +88,11 @@ namespace systelab { namespace gtest_allure { namespace model {
 	void TestSuite::setName(const std::string& name)
 	{
 		m_name = name;
+	}
+
+	void TestSuite::setFullName(const std::string& fullName)
+	{
+		m_fullName = fullName;
 	}
 
 	void TestSuite::setTmsId(const std::string& tmsId)
@@ -178,6 +190,7 @@ namespace systelab { namespace gtest_allure { namespace model {
 	{
 		m_uuid = other.m_uuid;
 		m_name = other.m_name;
+		m_fullName = other.m_fullName;
 		m_tmsId = other.m_tmsId;
 		m_status = other.m_status;
 		m_stage = other.m_stage;
@@ -195,6 +208,7 @@ namespace systelab { namespace gtest_allure { namespace model {
 	{
 		return (lhs.m_uuid == rhs.m_uuid) &&
 			   (lhs.m_name == rhs.m_name) &&
+			   (lhs.m_fullName == rhs.m_fullName) &&
 			   (lhs.m_tmsId == rhs.m_tmsId) &&
 			   (lhs.m_status == rhs.m_status) &&
 			   (lhs.m_stage == rhs.m_stage) &&

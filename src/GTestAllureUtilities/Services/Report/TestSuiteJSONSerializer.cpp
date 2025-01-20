@@ -32,6 +32,7 @@ namespace systelab { namespace gtest_allure { namespace service {
 			jsonParent.addMember("uuid", testSuite.getUUID());
 		
 		jsonParent.addMember("name", testSuite.getName());
+		jsonParent.addMember("fullName", testSuite.getFullName());
 		jsonParent.addMember("status", translateStatusToString(testSuite.getStatus()));
 		jsonParent.addMember("stage", translateStageToString(testSuite.getStage()));
 		jsonParent.addMember("start", testSuite.getStart());

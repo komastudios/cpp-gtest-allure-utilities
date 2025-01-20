@@ -27,6 +27,7 @@ namespace systelab { namespace gtest_allure {
 
 		static void setTMSId(const std::string&);
 		static void setTestSuiteName(const std::string&);
+		static void setTestSuiteFullName(const std::string&);
 		static void setTestSuiteDescription(const std::string&);
 		static void setTestSuiteEpic(const std::string&);
 		static void setTestSuiteSeverity(const std::string&);
