@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "GTestAllureUtilities/Services/Report/TestSuiteJSONSerializer.h"
 
 #include "GTestAllureUtilities/Model/Action.h"

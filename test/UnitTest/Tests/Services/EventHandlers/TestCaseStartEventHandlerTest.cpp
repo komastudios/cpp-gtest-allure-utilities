@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "GTestAllureUtilities/Services/EventHandlers/TestCaseStartEventHandler.h"
 
 #include "GTestAllureUtilities/Model/TestProgram.h"

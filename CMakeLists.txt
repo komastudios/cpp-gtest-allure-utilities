@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.11)
 
 project(GTestAllureUtilities)
 
+option(BUILD_SAMPLE_TEST_PROJECT "Build sample test project" ON)
+
 # Configure environment
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -37,22 +39,23 @@ else()
 	add_library(GTest::GTest ALIAS gmock)
 endif()
 
-add_subdirectory(deps/cpp-test-utilities)
-add_subdirectory(deps/cpp-json-adapter)
-add_subdirectory(deps/cpp-rapidjson-json-adapter)
+# Configure GTestAllureUtilities static library
+set(GTEST_ALLURE_UTILITIES GTestAllureUtilities)
+file(GLOB_RECURSE GTEST_ALLURE_UTILITIES_SRC "src/*.cpp")
+add_library(${GTEST_ALLURE_UTILITIES} STATIC ${GTEST_ALLURE_UTILITIES_SRC})
 
-# Adjust compilation flags
+target_link_libraries(${GTEST_ALLURE_UTILITIES} PUBLIC GTest::GTest)
+target_include_directories(${GTEST_ALLURE_UTILITIES} PUBLIC src)
+
+target_compile_definitions(${GTEST_ALLURE_UTILITIES} PRIVATE RAPIDJSON_HAS_STDSTRING=1)
+target_include_directories(${GTEST_ALLURE_UTILITIES} PRIVATE 
+	src/GTestAllureUtilities
+	deps)
+
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=implicit-fallthrough")
+	target_compile_options(${GTEST_ALLURE_UTILITIES} PRIVATE -Wno-error=implicit-fallthrough)
 endif()
 
-# Configure include directories
-include_directories(${CMAKE_SOURCE_DIR}/src)
-include_directories(${CMAKE_SOURCE_DIR}/test)
-
-# Add subprojects
-add_subdirectory(${CMAKE_SOURCE_DIR}/src/GTestAllureUtilities)
-add_subdirectory(${CMAKE_SOURCE_DIR}/test/TestUtilities)
-add_subdirectory(${CMAKE_SOURCE_DIR}/test/UnitTest)
-add_subdirectory(${CMAKE_SOURCE_DIR}/test/IntegrationTest)
-add_subdirectory(${CMAKE_SOURCE_DIR}/test/SampleTestProject)
+if (BUILD_SAMPLE_TEST_PROJECT)
+	add_subdirectory(test/SampleTestProject)
+endif()

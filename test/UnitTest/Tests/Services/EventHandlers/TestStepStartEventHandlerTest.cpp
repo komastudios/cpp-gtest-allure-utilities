@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "GTestAllureUtilities/Services/EventHandlers/TestStepStartEventHandler.h"
 
 #include "GTestAllureUtilities/Model/StepType.h"

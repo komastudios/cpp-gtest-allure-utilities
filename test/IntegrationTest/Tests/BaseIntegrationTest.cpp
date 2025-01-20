@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "BaseIntegrationTest.h"
 
 #include "GTestAllureUtilities/Services/ServicesFactory.h"

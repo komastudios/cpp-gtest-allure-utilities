@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "GTestAllureUtilities/Services/Property/TestCasePropertySetter.h"
 
 #include "GTestAllureUtilities/Model/TestProgram.h"

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "GTestAllureUtilities/Services/System/TimeService.h"
 
 #include <chrono>

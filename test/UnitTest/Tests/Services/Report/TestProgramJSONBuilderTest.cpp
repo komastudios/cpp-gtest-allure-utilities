@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "GTestAllureUtilities/Services/Report/TestProgramJSONBuilder.h"
 
 #include "GTestAllureUtilities/Model/TestSuite.h"
@@ -28,7 +27,7 @@ namespace systelab { namespace gtest_allure_utilities { namespace unit_test {
 		std::unique_ptr<model::TestProgram> buildTestProgram()
 		{
 			m_testProgramName = "MyTestProgram";
-			m_outputFolder = "TestProgramJSONBuilderTest\\Reports";
+			m_outputFolder = "TestProgramJSONBuilderTest/Reports";
 			m_testSuiteUUIDs = { "UUID1", "UUID2", "UUID3" };
 
 			auto testProgram = std::make_unique<model::TestProgram>();
@@ -83,7 +82,7 @@ namespace systelab { namespace gtest_allure_utilities { namespace unit_test {
 	{
 		for (const auto& testSuiteUUID : m_testSuiteUUIDs)
 		{
-			std::string expectedFilepath = m_outputFolder + "\\" + testSuiteUUID + "-" + m_testProgramName + ".json";
+			std::string expectedFilepath = m_outputFolder + "/" + testSuiteUUID + "-" + m_testProgramName + ".json";
 			std::string expectedFileContent = "Serialized" + testSuiteUUID;
 			EXPECT_CALL(*m_fileService, saveFile(expectedFilepath, expectedFileContent));
 		}

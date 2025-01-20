@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "StubServicesFactory.h"
 
 #include "GTestAllureUtilities/Model/TestProgram.h"
