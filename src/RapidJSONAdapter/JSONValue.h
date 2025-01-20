@@ -18,7 +18,7 @@ namespace systelab { namespace json { namespace rapidjson {
 	class JSONValue : public IJSONValue
 	{
 	public:
-		JSONValue(JSONDocument&, ::rapidjson::Value&, ::rapidjson::Document::AllocatorType&);
+		JSONValue(JSONDocument&, ::RAPIDJSON_NAMESPACE::Value&, ::RAPIDJSON_NAMESPACE::Document::AllocatorType&);
 		virtual ~JSONValue();
 
 		Type getType() const override;
@@ -86,8 +86,8 @@ namespace systelab { namespace json { namespace rapidjson {
 
 	private:
 		JSONDocument& m_document;
-		::rapidjson::Value& m_value;
-		::rapidjson::Value::AllocatorType& m_allocator;
+		::RAPIDJSON_NAMESPACE::Value& m_value;
+		::RAPIDJSON_NAMESPACE::Value::AllocatorType& m_allocator;
 
 		mutable bool m_objectMembersLoaded;
 		mutable std::map< std::string, std::unique_ptr<JSONMember> > m_objectMembers;

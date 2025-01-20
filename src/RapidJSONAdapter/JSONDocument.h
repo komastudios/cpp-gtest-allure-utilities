@@ -13,7 +13,7 @@ namespace systelab { namespace json { namespace rapidjson {
 	class JSONDocument : public IJSONDocument
 	{
 	public:
-		JSONDocument(std::unique_ptr<::rapidjson::Document>);
+		JSONDocument(std::unique_ptr<::RAPIDJSON_NAMESPACE::Document>);
 		virtual ~JSONDocument();
 
 		IJSONValue& getRootValue() override;
@@ -22,13 +22,13 @@ namespace systelab { namespace json { namespace rapidjson {
 		std::string serialize(bool pretty) const override;
 
 	public:
-		void addFreeValue(std::unique_ptr<::rapidjson::Value>);
-		std::unique_ptr<::rapidjson::Value> removeFreeValue(const ::rapidjson::Value&);
+		void addFreeValue(std::unique_ptr<::RAPIDJSON_NAMESPACE::Value>);
+		std::unique_ptr<::RAPIDJSON_NAMESPACE::Value> removeFreeValue(const ::RAPIDJSON_NAMESPACE::Value&);
 
 	private:
-		std::unique_ptr<::rapidjson::Document> m_document;
+		std::unique_ptr<::RAPIDJSON_NAMESPACE::Document> m_document;
 		std::unique_ptr<IJSONValue> m_rootValue;
-		std::vector< std::unique_ptr<::rapidjson::Value> > m_freeValues;
+		std::vector< std::unique_ptr<::RAPIDJSON_NAMESPACE::Value> > m_freeValues;
 	};
 
 }}}

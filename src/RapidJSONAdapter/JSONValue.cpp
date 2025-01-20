@@ -9,8 +9,8 @@
 namespace systelab { namespace json { namespace rapidjson {
 
 	JSONValue::JSONValue(JSONDocument& document,
-						 ::rapidjson::Value& value,
-						 ::rapidjson::Document::AllocatorType& allocator)
+						 ::RAPIDJSON_NAMESPACE::Value& value,
+						 ::RAPIDJSON_NAMESPACE::Document::AllocatorType& allocator)
 		:m_document(document)
 		,m_value(value)
 		,m_allocator(allocator)
@@ -25,21 +25,21 @@ namespace systelab { namespace json { namespace rapidjson {
 
 	Type JSONValue::getType() const
 	{
-		::rapidjson::Type type = m_value.GetType();
+		::RAPIDJSON_NAMESPACE::Type type = m_value.GetType();
 		switch (type)
 		{
-			case ::rapidjson::kFalseType:
-			case ::rapidjson::kTrueType:
+			case ::RAPIDJSON_NAMESPACE::kFalseType:
+			case ::RAPIDJSON_NAMESPACE::kTrueType:
 				return BOOLEAN_TYPE;
-			case ::rapidjson::kObjectType:
+			case ::RAPIDJSON_NAMESPACE::kObjectType:
 				return OBJECT_TYPE;
-			case ::rapidjson::kArrayType:
+			case ::RAPIDJSON_NAMESPACE::kArrayType:
 				return ARRAY_TYPE;
-			case ::rapidjson::kStringType:
+			case ::RAPIDJSON_NAMESPACE::kStringType:
 				return STRING_TYPE;
-			case ::rapidjson::kNumberType:
+			case ::RAPIDJSON_NAMESPACE::kNumberType:
 				return NUMBER_TYPE;
-			case ::rapidjson::kNullType:
+			case ::RAPIDJSON_NAMESPACE::kNullType:
 			default:
 				return NULL_TYPE;
 		}
@@ -250,9 +250,9 @@ namespace systelab { namespace json { namespace rapidjson {
 			throw std::runtime_error("JSONValue::addMember() Provided value does not belong to this document");
 		}
 
-		std::unique_ptr<::rapidjson::Value> freeValue = m_document.removeFreeValue(adapterValueToAdd->m_value);
+		std::unique_ptr<::RAPIDJSON_NAMESPACE::Value> freeValue = m_document.removeFreeValue(adapterValueToAdd->m_value);
 
-		::rapidjson::Value memberName(name, m_allocator);
+		::RAPIDJSON_NAMESPACE::Value memberName(name, m_allocator);
 		m_value.AddMember(memberName, *freeValue, m_allocator);
 
 		std::unique_ptr<JSONMember> member = std::make_unique<JSONMember>(m_document, name, m_value[name], m_allocator);
@@ -292,11 +292,11 @@ namespace systelab { namespace json { namespace rapidjson {
 			throw std::runtime_error("JSONValue::addArrayValue() Provided value does not belong to this document");
 		}
 
-		std::unique_ptr<::rapidjson::Value> freeValue = m_document.removeFreeValue(adapterValueToAdd->m_value);
+		std::unique_ptr<::RAPIDJSON_NAMESPACE::Value> freeValue = m_document.removeFreeValue(adapterValueToAdd->m_value);
 		m_value.PushBack(freeValue->Move(), m_allocator);
 
 		unsigned int addedValueIndex = m_value.Size() - 1;
-		::rapidjson::Value& addedValue = m_value[addedValueIndex];
+		::RAPIDJSON_NAMESPACE::Value& addedValue = m_value[addedValueIndex];
 		auto adapterValueAdded = std::make_unique<JSONValue>(m_document, addedValue, m_allocator);
 		m_arrayValues.push_back(std::move(adapterValueAdded));
 	}
@@ -310,7 +310,7 @@ namespace systelab { namespace json { namespace rapidjson {
 
 	std::unique_ptr<IJSONValue> JSONValue::buildValue(Type type) const
 	{
-		auto freeValue = std::make_unique<::rapidjson::Value>();
+		auto freeValue = std::make_unique<::RAPIDJSON_NAMESPACE::Value>();
 		auto newValue = std::make_unique<JSONValue>(m_document, *freeValue, m_allocator);
 		newValue->setType(type);
 		m_document.addFreeValue(std::move(freeValue));
@@ -320,7 +320,7 @@ namespace systelab { namespace json { namespace rapidjson {
 
 	std::unique_ptr<IJSONDocument> JSONValue::buildDocument() const
 	{
-		auto newDocument = std::make_unique<::rapidjson::Document>();
+		auto newDocument = std::make_unique<::RAPIDJSON_NAMESPACE::Document>();
 		newDocument->CopyFrom(m_value, newDocument->GetAllocator());
 		return std::make_unique<JSONDocument>(std::move(newDocument));
 	}

@@ -12,7 +12,7 @@ namespace systelab { namespace json { namespace rapidjson {
 	class JSONMember
 	{
 	public:
-		JSONMember(JSONDocument&, const std::string&, ::rapidjson::Value&, ::rapidjson::Document::AllocatorType&);
+		JSONMember(JSONDocument&, const std::string&, ::RAPIDJSON_NAMESPACE::Value&, ::RAPIDJSON_NAMESPACE::Document::AllocatorType&);
 		virtual ~JSONMember();
 
 		IJSONValue& getValue() const;

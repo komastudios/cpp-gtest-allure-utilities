@@ -16,18 +16,18 @@ namespace systelab { namespace json { namespace rapidjson {
 	class JSONSchemaValidator : public IJSONSchemaValidator
 	{
 	private:
-		class RapidjsonSchemaRemoteDocumentProvider : public ::rapidjson::IRemoteSchemaDocumentProvider
+		class RapidjsonSchemaRemoteDocumentProvider : public ::RAPIDJSON_NAMESPACE::IRemoteSchemaDocumentProvider
 		{
 		public:
 			RapidjsonSchemaRemoteDocumentProvider(const IJSONRemoteSchemaProvider&);
 
-			virtual const ::rapidjson::SchemaDocument* GetRemoteDocument(const char* uri, ::rapidjson::SizeType length);
+			virtual const ::RAPIDJSON_NAMESPACE::SchemaDocument* GetRemoteDocument(const char* uri, ::RAPIDJSON_NAMESPACE::SizeType length);
 
 		private:
 			const IJSONRemoteSchemaProvider& m_remoteSchemaProvider;
-			std::map<std::string, std::unique_ptr<::rapidjson::SchemaDocument> > m_remoteSchemaMap;
+			std::map<std::string, std::unique_ptr<::RAPIDJSON_NAMESPACE::SchemaDocument> > m_remoteSchemaMap;
 
-			std::unique_ptr<::rapidjson::SchemaDocument> buildSchemaDocument(const std::string& uri);
+			std::unique_ptr<::RAPIDJSON_NAMESPACE::SchemaDocument> buildSchemaDocument(const std::string& uri);
 		};
 
 	public:
@@ -39,7 +39,7 @@ namespace systelab { namespace json { namespace rapidjson {
 
 	private:
 		std::unique_ptr<RapidjsonSchemaRemoteDocumentProvider> m_rapidjsonRemoteSchemaProvider;
-		std::unique_ptr<::rapidjson::SchemaDocument> m_schemaDocument;
+		std::unique_ptr<::RAPIDJSON_NAMESPACE::SchemaDocument> m_schemaDocument;
 	};
 
 }}}
