@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ITestSuiteJSONSerializer.h"
-#include "JSONAdapterInterface\IJSONAdapter.h"
+#include "JSONAdapterInterface/IJSONAdapter.h"
 
 #include <memory>
 #include <vector>
