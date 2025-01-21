@@ -94,7 +94,7 @@ namespace systelab { namespace gtest_allure { namespace service {
 		std::ostringstream stream;
 		for (const auto& fragment : pathFragments)
 		{
-			stream << (&fragment != &pathFragments[0]) ? "/" : "";
+			stream << ((&fragment != &pathFragments[0]) ? "/" : "");
 			stream << fragment;
 		}
 
