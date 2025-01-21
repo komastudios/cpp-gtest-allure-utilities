@@ -2,6 +2,10 @@
 
 #include "IServicesFactory.h"
 
+namespace systelab { namespace json {
+	class IJSONAdapter;
+	class IJSONValue;
+}}
 
 namespace systelab { namespace gtest_allure { namespace model {
 	class TestProgram;
@@ -45,6 +49,9 @@ namespace systelab { namespace gtest_allure { namespace service {
 		// Unique instance (to be used by integration tests)
 		static IServicesFactory* getInstance();
 		static void setInstance(std::unique_ptr<IServicesFactory>);
+
+	protected:
+		virtual std::unique_ptr<systelab::json::IJSONAdapter> buildJSONAdapter() const;
 
 	private:
 		model::TestProgram& m_testProgram;

@@ -15,6 +15,8 @@ namespace systelab { namespace gtest_allure { namespace service {
 	{
 	}
 
+	TestSuiteJSONSerializer::~TestSuiteJSONSerializer() = default;
+
 	std::string TestSuiteJSONSerializer::serialize(const model::TestSuite& testSuite) const
 	{
 		auto jsonDocument = m_jsonAdapter->buildEmptyDocument();

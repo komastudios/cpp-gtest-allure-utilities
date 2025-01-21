@@ -112,6 +112,10 @@ namespace systelab { namespace gtest_allure { namespace service {
 		return std::make_unique<TestCasePropertySetter>(m_testProgram);
 	}
 
+	std::unique_ptr<systelab::json::IJSONAdapter> ServicesFactory::buildJSONAdapter() const
+	{
+		return std::make_unique<json::rapidjson::JSONAdapter>();
+	}
 
 	// JSON services
 	std::unique_ptr<ITestProgramJSONBuilder> ServicesFactory::buildTestProgramJSONBuilder() const
@@ -123,7 +127,7 @@ namespace systelab { namespace gtest_allure { namespace service {
 
 	std::unique_ptr<ITestSuiteJSONSerializer> ServicesFactory::buildTestSuiteJSONSerializer() const
 	{
-		auto jsonAdapter = std::make_unique<json::rapidjson::JSONAdapter>();
+		auto jsonAdapter = buildJSONAdapter();
 		return std::make_unique<TestSuiteJSONSerializer>(std::move(jsonAdapter));
 	}
 

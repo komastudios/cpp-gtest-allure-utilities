@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ITestSuiteJSONSerializer.h"
+#include "JSONAdapterInterface\IJSONAdapter.h"
 
 #include <memory>
 #include <vector>
@@ -29,16 +30,16 @@ namespace systelab { namespace gtest_allure { namespace service {
 	{
 	public:
 		TestSuiteJSONSerializer(std::unique_ptr<json::IJSONAdapter>);
-		virtual ~TestSuiteJSONSerializer() = default;
+		~TestSuiteJSONSerializer() override;
 
 		std::string serialize(const model::TestSuite&) const override;
 
-	private:
-		void addTestSuiteToJSON(const model::TestSuite&, json::IJSONValue&) const;
-		void addLabelsToJSON(const model::TestSuite&, json::IJSONValue&) const;
-		void addLinksToJSON(const std::vector<model::Link>&, json::IJSONValue&) const;
-		void addTestCasesToJSON(const std::vector<model::TestCase>&, json::IJSONValue&) const;
-		void addTestCaseStepsToJSON(const model::TestCase& testCase, json::IJSONValue&) const;
+	protected:
+		virtual void addTestSuiteToJSON(const model::TestSuite&, json::IJSONValue&) const;
+		virtual void addLabelsToJSON(const model::TestSuite&, json::IJSONValue&) const;
+		virtual void addLinksToJSON(const std::vector<model::Link>&, json::IJSONValue&) const;
+		virtual void addTestCasesToJSON(const std::vector<model::TestCase>&, json::IJSONValue&) const;
+		virtual void addTestCaseStepsToJSON(const model::TestCase& testCase, json::IJSONValue&) const;
 
 		std::string translateStatusToString(model::Status) const;
 		std::string translateStageToString(model::Stage) const;
