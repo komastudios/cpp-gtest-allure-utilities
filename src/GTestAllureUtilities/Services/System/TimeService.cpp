@@ -1,7 +1,6 @@
 #include "TimeService.h"
 
-#include <ctime>
-
+#include <chrono>
 
 namespace systelab { namespace gtest_allure { namespace service {
 
@@ -9,9 +8,11 @@ namespace systelab { namespace gtest_allure { namespace service {
 	{
 	}
 
-	time_t TimeService::getCurrentTime() const
+	int64_t TimeService::getCurrentTime() const
 	{
-		return std::time(0);
+	    auto now = std::chrono::system_clock::now();
+	    auto duration = now.time_since_epoch();
+	    return std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
 	}
 
 }}}

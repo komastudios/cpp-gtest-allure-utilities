@@ -11,7 +11,7 @@ namespace systelab { namespace gtest_allure { namespace service {
 		TimeService();
 		virtual ~TimeService() = default;
 
-		time_t getCurrentTime() const;
+		int64_t getCurrentTime() const;
 	};
 
 }}}

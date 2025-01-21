@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-
+#include <cstdint>
 
 namespace systelab { namespace gtest_allure { namespace service {
 
@@ -10,7 +10,7 @@ namespace systelab { namespace gtest_allure { namespace service {
 	public:
 		virtual ~ITimeService() = default;
 
-		virtual time_t getCurrentTime() const = 0;
+		virtual int64_t getCurrentTime() const = 0;
 	};
 
 }}}
