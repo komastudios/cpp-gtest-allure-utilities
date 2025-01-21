@@ -111,6 +111,12 @@ namespace systelab { namespace gtest_allure {
 		stepEndEventHandler->handleTestStepEnd(currentStatus);
 	}
 
+	void AllureAPI::addAttachment(const std::string& name, const std::string& path, const std::string& type)
+	{
+		auto testCasePropertySetter = getServicesFactory()->buildTestCasePropertySetter();
+		testCasePropertySetter->addAttachment(name, path, type);
+	}
+
 	service::IServicesFactory* AllureAPI::getServicesFactory()
 	{
 		auto configuredServicesFactoryInstance = service::ServicesFactory::getInstance();

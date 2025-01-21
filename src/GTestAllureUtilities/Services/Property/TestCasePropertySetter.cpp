@@ -26,6 +26,16 @@ namespace systelab { namespace gtest_allure { namespace service {
 		}
 	}
 
+	void TestCasePropertySetter::addAttachment(const std::string& name, const std::string& source, const std::string& type) const
+	{
+		model::TestCase& testCase = getRunningTestCase();
+		auto attachment = std::make_unique<model::Attachment>();
+		attachment->setName(name);
+		attachment->setSource(source);
+		attachment->setType(type);
+		testCase.addAttachment(std::move(attachment));
+	}
+
 	model::TestCase& TestCasePropertySetter::getRunningTestCase() const
 	{
 		auto& testSuite = getRunningTestSuite();

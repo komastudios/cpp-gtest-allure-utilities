@@ -21,9 +21,16 @@ namespace systelab { namespace gtest_allure { namespace model {
 		,m_stop(other.m_stop)
 		,m_steps()
 	{
+		m_steps.reserve(other.m_steps.size());
 		for (const auto& step : other.m_steps)
 		{
 			m_steps.push_back(std::unique_ptr<Step>(step->clone()));
+		}
+
+		m_attachments.reserve(other.m_attachments.size());
+		for (const auto& attachment : other.m_attachments)
+		{
+			m_attachments.push_back(std::unique_ptr<Attachment>(new Attachment(*attachment)));
 		}
 	}
 
@@ -97,6 +104,26 @@ namespace systelab { namespace gtest_allure { namespace model {
 		m_steps.push_back(std::move(step));
 	}
 
+	unsigned int TestCase::getAttachmentCount() const
+	{
+		return (unsigned int) m_attachments.size();
+	}
+
+	const Attachment* TestCase::getAttachment(unsigned int index) const
+	{
+		return m_attachments[index].get();
+	}
+
+	Attachment* TestCase::getAttachment(unsigned int index)
+	{
+		return m_attachments[index].get();
+	}
+
+	void TestCase::addAttachment(std::unique_ptr<Attachment> attachment)
+	{
+		m_attachments.push_back(std::move(attachment));
+	}
+
 	TestCase& TestCase::operator= (const TestCase& other)
 	{
 		m_name = other.m_name;
@@ -106,9 +133,17 @@ namespace systelab { namespace gtest_allure { namespace model {
 		m_stop = other.m_stop;
 
 		m_steps = std::vector< std::unique_ptr<Step> >();
+		m_steps.reserve(other.m_steps.size());
 		for (const auto& step : other.m_steps)
 		{
 			m_steps.push_back(std::unique_ptr<Step>(step->clone()));
+		}
+
+		m_attachments = std::vector< std::unique_ptr<Attachment> >();
+		m_attachments.reserve(other.m_attachments.size());
+		for (const auto& attachment : other.m_attachments)
+		{
+			m_attachments.push_back(std::unique_ptr<Attachment>(new Attachment(*attachment)));
 		}
 
 		return *this;
@@ -116,12 +151,13 @@ namespace systelab { namespace gtest_allure { namespace model {
 
 	bool operator== (const TestCase& lhs, const TestCase& rhs)
 	{
-		if ((lhs.m_name != rhs.m_name) &&
-			(lhs.m_status != rhs.m_status) &&
-			(lhs.m_stage != rhs.m_stage) &&
-			(lhs.m_start != rhs.m_start) &&
-			(lhs.m_stop != rhs.m_stop) &&
-			(lhs.m_steps.size() != rhs.m_steps.size()))
+		if ((lhs.m_name != rhs.m_name) ||
+			(lhs.m_status != rhs.m_status) ||
+			(lhs.m_stage != rhs.m_stage) ||
+			(lhs.m_start != rhs.m_start) ||
+			(lhs.m_stop != rhs.m_stop) ||
+			(lhs.m_steps.size() != rhs.m_steps.size()) ||
+			(lhs.m_attachments.size() != rhs.m_attachments.size()))
 		{
 			return false;
 		}
@@ -130,6 +166,15 @@ namespace systelab { namespace gtest_allure { namespace model {
 		for (unsigned int i = 0; i < nSteps; i++)
 		{
 			if ((*lhs.m_steps[i]) != (*rhs.m_steps[i]))
+			{
+				return false;
+			}
+		}
+
+		unsigned int nAttachments = (unsigned int) lhs.m_attachments.size();
+		for (unsigned int i = 0; i < nAttachments; i++)
+		{
+			if ((*lhs.m_attachments[i]) != (*rhs.m_attachments[i]))
 			{
 				return false;
 			}

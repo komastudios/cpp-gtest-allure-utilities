@@ -20,6 +20,7 @@ namespace systelab { namespace gtest_allure { namespace service {
 		virtual ~TestCasePropertySetter();
 
 		void setProperty(const std::string& name, const std::string& value) const override;
+		void addAttachment(const std::string& name, const std::string& source, const std::string& type) const override;
 
 	private:
 		model::TestCase& getRunningTestCase() const;

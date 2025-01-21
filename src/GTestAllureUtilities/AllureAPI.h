@@ -36,6 +36,7 @@ namespace systelab { namespace gtest_allure {
 		static void setTestCaseName(const std::string&);
 		static void addAction(const std::string& name, std::function<void()>);
 		static void addExpectedResult(const std::string& name, std::function<void()>);
+		static void addAttachment(const std::string& name, const std::string& path, const std::string& type);
 
 	private:
 		static void addStep(const std::string& name, bool isAction, std::function<void()>);

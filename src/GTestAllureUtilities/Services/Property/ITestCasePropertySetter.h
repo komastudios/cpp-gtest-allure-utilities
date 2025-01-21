@@ -13,6 +13,8 @@ namespace systelab { namespace gtest_allure { namespace service {
 
 		virtual void setProperty(const std::string& name, const std::string& value) const = 0;
 
+		virtual void addAttachment(const std::string& name, const std::string& source, const std::string& type) const = 0;
+
 	public:
 		struct NoRunningTestSuiteException : std::runtime_error
 		{

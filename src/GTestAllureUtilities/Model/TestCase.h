@@ -3,6 +3,7 @@
 #include "Stage.h"
 #include "Status.h"
 #include "Step.h"
+#include "Attachment.h"
 
 #include <memory>
 #include <string>
@@ -35,6 +36,11 @@ namespace systelab { namespace gtest_allure { namespace model {
 		Step* getStep(unsigned int index);
 		void addStep(std::unique_ptr<Step>);
 
+		unsigned int getAttachmentCount() const;
+		const Attachment* getAttachment(unsigned int index) const;
+		Attachment* getAttachment(unsigned int index);
+		void addAttachment(std::unique_ptr<Attachment>);
+
 		virtual TestCase& operator= (const TestCase&);
 		friend bool operator== (const TestCase& lhs, const TestCase& rhs);
 		friend bool operator!= (const TestCase& lhs, const TestCase& rhs);
@@ -47,6 +53,7 @@ namespace systelab { namespace gtest_allure { namespace model {
 		time_t m_stop;
 
 		std::vector< std::unique_ptr<Step> > m_steps;
+		std::vector< std::unique_ptr<Attachment> > m_attachments;
 	};
 
 }}}
